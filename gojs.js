@@ -99,7 +99,7 @@ function init() {
         return progress == null ? '#9F9DA3' : progress;
       }),
       new go.Binding("font", 'colorText', function (progress) {
-        return progress == null ? "bold 7pt cabin" : "bold 9pt cabin";
+        return progress == null ? "bold 7pt cabin" : "bold 8.5pt cabin";
       }),
     )
   );
@@ -140,7 +140,7 @@ function highlightNode(key) {
       break;
     }
   }
-  
+
   highlighter.location = new go.Point(
     node.location.x + 27.5,
     node.location.y + 27.5
