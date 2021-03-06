@@ -1,7 +1,7 @@
 function init() {
   var $ = go.GraphObject.make;
 
-  var diagram = $(
+  diagram = $(
     go.Diagram,
     "helloGO", // must name or refer to the DIV HTML element
     {
@@ -60,11 +60,27 @@ function init() {
     new go.Binding("fromEndSegmentLength"),
     new go.Binding("toEndSegmentLength"),
     new go.Binding("points").makeTwoWay(),
+    new go.Binding("zOrder", 'bold', function (progress) {
+      return progress ? 1 : 0;
+    }),
 
-    $(go.Shape),
+    $(go.Shape,
+      new go.Binding('stroke', 'colorPath', function (progress) {
+        return progress == null ? '#9F9DA3' : progress;
+      }),
+      new go.Binding('strokeWidth', 'bold', function(progress) {
+        return progress ? 4 : 1;
+      })
+      ),
     $(
       go.Shape, // the "to" end arrowhead
-      { toArrow: "Standard" }
+      { toArrow: "Standard", stroke: null },
+      new go.Binding('fill', 'colorPath', function (progress) {
+        return progress == null ? '#9F9DA3' : progress;
+      }),
+      new go.Binding('scale', 'bold', function (progress) {
+        return progress==true ? 2 : 1;
+      })
     ),
     $(
       go.TextBlock,
@@ -99,31 +115,60 @@ function init() {
   );
   diagram.add(highlighter);
 
-  // diagram.layout =
-  // $(go.LayeredDigraphLayout,  // this will be discussed in a later section
-  //   { columnSpacing: 5,
-  //     setsPortSpots: false });
-
-  // var nodeDataArray = [
-  //   { key: 1, loc: "0 0", isHighlighted: false, name: "HH" }, //, "name": "Start\nstate"
-  //   { key: 2, loc: "400 0", isHighlighted: false, name: "O" }, //, "name": "End\nstate"
-  //   { key: 3, loc: "200 -200", isHighlighted: false, name: "start" },
-  // ];
-  // var linkDataArray = [
-  //   { from: 3, to: 1 },
-  //   {
-  //     from: 3,
-  //     to: 2,
-  //     //   points: [200, -200,300, -100,400,0],
-  //   },
-  // ];
-
   diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-  var node = diagram.findNodeForKey(0);
+  for (p of diagram.model.linkDataArray) {
+    diagram.model.set(p, 'colorPath', null);
+    diagram.model.set(p, 'colorText', null);
+    diagram.model.set(p, 'bold', false);
+  }
+  highlightNode(machine.current_State.key)
+  highlightPath(machine.prev_State.key, machine.current_State.key)
+}
+
+function highlightNode(key) {
+  var node = diagram.findNodeForKey(key);
   highlighter.location = new go.Point(
     node.location.x + 27.5,
     node.location.y + 27.5
   );
+  for (p of diagram.model.nodeDataArray) {
+    if (p.key == key){
+      diagram.model.set(p, 'isHighlighted', true);
+      break;
+    }
+  }
+}
+
+function eraseNode() { 
+  for (p of diagram.model.nodeDataArray) {
+    diagram.model.set(p, 'isHighlighted', false);
+  }
+}
+
+function highlightPath(last_state, current_state) {
+  colorTextf = '#4F388F';
+  colorPathf = '#4F388F';
+  colorTextt = '#000000';
+  colorPatht = '#000000';
+  for (p of diagram.model.linkDataArray) {
+    if (p.from == last_state && p.to == current_state) {
+      // console.log(p);
+      diagram.model.set(p, 'colorPath', colorPathf);
+      diagram.model.set(p, 'colorText', colorTextf);
+      diagram.model.set(p, 'bold', true);
+      // break;
+    }
+    else if(p.from == current_state){
+      diagram.model.set(p, 'colorPath', colorPatht);
+      diagram.model.set(p, 'colorText', colorTextt);
+      diagram.model.set(p, 'bold', true);
+      }
+    else{
+      diagram.model.set(p, 'bold', false);
+      diagram.model.set(p, 'colorPath', null);
+      diagram.model.set(p, 'colorText', null);
+    }
+  }
 }
 
 function choosePic(data) {
@@ -132,4 +177,32 @@ function choosePic(data) {
       ? `./Pic/${data.name}.png`
       : `./Pic/${data.name}black.png`
     : `./Pic/${data.name}.png`;
+}
+
+function handleClick(button) {
+  machine.input_String.push(button);
+  //set prev state
+  machine.prev_State = machine.current_State;
+  // get next state
+  let next = machine.getNext(button);
+
+  // set current state = next state
+  machine.setCurrentState(next);
+
+  highlightNode(machine.current_State.key);
+  highlightPath(machine.prev_State.key, machine.current_State.key);
+
+  // Reset erase Node
+  if (machine.current_State.name == 'start' && button == 'Reset'){
+    eraseNode();
+  }
+  console.log(machine.current_State.name);
+}
+
+function restart() {
+  machine.input_String = [];
+  machine.Restart();
+  eraseNode();
+  highlightNode(machine.current_State.key)
+  highlightPath(machine.prev_State.key, machine.current_State.key)
 }

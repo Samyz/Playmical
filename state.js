@@ -187,5 +187,15 @@ let machine = {
     },
     setCurrentState : function (set) {
         this.current_State = set
+    },
+    Restart : function () {
+        this.current_State = {
+            name : 'start',
+            key : 0
+        };
+        this.prev_State = {
+            name : 'none',
+            key : -1
+        };
     }
 }

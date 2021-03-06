@@ -108,8 +108,10 @@ var nodeDataArray = [
 ];
 
 var linkDataArray = [
-  { points: [27.5, -50, 27.5, 0] },
+  { from: -1, to: 0, points: [27.5, -50, 27.5, 0] },
   {
+    from: 15,
+    to: 16,
     points: [55, 477.5, 225, 477.5],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -431,6 +433,8 @@ var linkDataArray = [
   // ====================================================== //
   // first state
   {
+    from: 1, 
+    to: 0,
     points: [-197.5, 205, -197.5, 215, -257.5, 215, -257.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -439,6 +443,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 2, 
+    to: 0,
     points: [-47.5, 205, -47.5, 215, -257.5, 215, -257.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -447,6 +453,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 3, 
+    to: 0,
     points: [102.5, 205, 102.5, 215, 372.5, 215, 372.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -455,6 +463,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 4, 
+    to: 0,
     points: [252.5, 205, 252.5, 215, 372.5, 215, 372.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -464,6 +474,8 @@ var linkDataArray = [
   },
   // second state
   {
+    from: 5, 
+    to: 0,
     points: [-512.5, 355, -512.5, 365, -572.5, 365, -572.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -472,6 +484,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 6, 
+    to: 0,
     points: [-392.5, 355, -392.5, 365, -572.5, 365, -572.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -480,6 +494,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 7, 
+    to: 0,
     points: [-272.5, 355, -272.5, 365, -572.5, 365, -572.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -488,6 +504,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 8, 
+    to: 0,
     points: [-152.5, 355, -152.5, 365, -572.5, 365, -572.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -496,6 +514,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 9, 
+    to: 0,
     points: [-32.5, 355, -32.5, 365, -572.5, 365, -572.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -504,6 +524,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 10, 
+    to: 0,
     points: [87.5, 355, 87.5, 365, 667.5, 365, 667.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -512,6 +534,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 11, 
+    to: 0,
     points: [207.5, 355, 207.5, 365, 667.5, 365, 667.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -520,6 +544,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 12, 
+    to: 0,
     points: [327.5, 355, 327.5, 365, 667.5, 365, 667.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -528,6 +554,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 13, 
+    to: 0,
     points: [447.5, 355, 447.5, 365, 667.5, 365, 667.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -536,6 +564,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 14, 
+    to: 0,
     points: [567.5, 355, 567.5, 365, 667.5, 365, 667.5, -15, 27.5, -15, 27.5, 0],
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -549,6 +579,8 @@ var linkDataArray = [
   // ====================================================== //
   {
     //start
+    from: 0, 
+    to: 0,
     points: [27.5, 55, 27.5, 70, 87.5, 70, 87.5, -15, 27.5, -15, 27.5, 0], //down 15 right 60 top -15 x 27.5 y 55
     fromEndSegmentLength: 0,
     toEndSegmentLength: 0,
@@ -557,6 +589,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 1, 
+    to: 1,
     //H
     points: [
       -197.5,
@@ -579,6 +613,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 2, 
+    to: 2,
     //C
     points: [
       -47.5,
@@ -601,6 +637,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 3, 
+    to: 3,
     //N
     points: [
       102.5,
@@ -623,6 +661,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 4, 
+    to: 4,
     //O
     points: [
       252.5,
@@ -645,6 +685,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 5, 
+    to: 5,
     //HH
     points: [
       -512.5,
@@ -667,6 +709,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 6, 
+    to: 6,
     //CH
     points: [
       -392.5,
@@ -689,6 +733,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 7, 
+    to: 7,
     //NH
     points: [
       -272.5,
@@ -711,6 +757,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 8, 
+    to: 8,
     //OH
     points: [
       -152.5,
@@ -733,6 +781,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 9, 
+    to: 9, 
     //CC
     points: [
       -32.5,
@@ -755,6 +805,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 10, 
+    to: 10,
     //CN
     points: [
       87.5,
@@ -777,6 +829,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 11, 
+    to: 11,
     //CO
     points: [
       207.5,
@@ -799,6 +853,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 12, 
+    to: 12,
     //NN
     points: [
       327.5,
@@ -821,6 +877,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 13, 
+    to: 13,
     //NO
     points: [
       447.5,
@@ -843,6 +901,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 14, 
+    to: 14,
     //OO
     points: [
       567.5,
@@ -865,6 +925,8 @@ var linkDataArray = [
     segmentFraction: 0.5,
   },
   {
+    from: 16, 
+    to: 16,
     //trap
     points: [
       252.5,

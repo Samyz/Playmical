@@ -7,6 +7,7 @@
     <script src="./node_modules/gojs/release/go-debug.js"></script>
     <script src="./gojs.js"></script>
     <script src="./data.js"></script>
+    <script src="./state.js"></script>
   </head>
   <body onload="init()">
     <div
@@ -14,13 +15,13 @@
       style="width: 85%; height: 550px; border: 1px solid black; margin: auto;"
     ></div>
     <div>
-        <button id="Hydrogen" type="button">Hydrogen</button>
-        <button id="Carbon" type="button">Carbon</button>
-        <button id="Nitrogen" type="button">Nitrogen</button>
-        <button id="Oxygen" type="button">Oxygen</button>
-        <button id="Reset" type="button">Reset</button>
-        <button id="Confirm" type="button">Confirm</button>
-        <button id="Restart" type="button">Restart</button>
+        <button id="Hydrogen" type="button" onclick="handleClick('Hydrogen')">Hydrogen</button>
+        <button id="Carbon" type="button" onclick="handleClick('Carbon')">Carbon</button>
+        <button id="Nitrogen" type="button" onclick="handleClick('Nitrogen')">Nitrogen</button>
+        <button id="Oxygen" type="button" onclick="handleClick('Oxygen')">Oxygen</button>
+        <button id="Reset" type="button" onclick="handleClick('Reset')">Reset</button>
+        <button id="Confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
+        <button id="Restart" type="button" onclick="restart()">Restart</button>
     </div>
   </body>
 </html>
