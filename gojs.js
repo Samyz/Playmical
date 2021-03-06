@@ -133,16 +133,18 @@ function init() {
 
 function highlightNode(key) {
   var node = diagram.findNodeForKey(key);
-  highlighter.location = new go.Point(
-    node.location.x + 27.5,
-    node.location.y + 27.5
-  );
+  
   for (p of diagram.model.nodeDataArray) {
     if (p.key == key){
       diagram.model.set(p, 'isHighlighted', true);
       break;
     }
   }
+  
+  highlighter.location = new go.Point(
+    node.location.x + 27.5,
+    node.location.y + 27.5
+  );
 }
 
 function eraseNode() { 
