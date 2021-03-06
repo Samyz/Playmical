@@ -146,10 +146,10 @@ function eraseNode() {
 }
 
 function highlightPath(last_state, current_state) {
-  colorTextf = '#4F388F';
-  colorPathf = '#4F388F';
-  colorTextt = '#000000';
-  colorPatht = '#000000';
+  colorTextf = '#2CB6B1';
+  colorPathf = '#2CB6B1';
+  colorTextt = '#090516';
+  colorPatht = '#090516';
   for (p of diagram.model.linkDataArray) {
     if (p.from == last_state && p.to == current_state) {
       // console.log(p);
