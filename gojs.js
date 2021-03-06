@@ -94,7 +94,13 @@ function init() {
       }, // centered multi-line text
       new go.Binding("text").makeTwoWay(),
       new go.Binding("segmentIndex").makeTwoWay(),
-      new go.Binding("segmentFraction").makeTwoWay()
+      new go.Binding("segmentFraction").makeTwoWay(),
+      new go.Binding("stroke", 'colorText', function (progress) {
+        return progress == null ? '#9F9DA3' : progress;
+      }),
+      new go.Binding("font", 'colorText', function (progress) {
+        return progress == null ? "bold 7pt cabin" : "bold 9pt cabin";
+      }),
     )
   );
 
@@ -148,8 +154,8 @@ function eraseNode() {
 function highlightPath(last_state, current_state) {
   colorTextf = '#2CB6B1';
   colorPathf = '#2CB6B1';
-  colorTextt = '#090516';
-  colorPatht = '#090516';
+  colorTextt = '#44404E';
+  colorPatht = '#44404E';
   for (p of diagram.model.linkDataArray) {
     if (p.from == last_state && p.to == current_state) {
       // console.log(p);
