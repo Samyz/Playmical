@@ -4,7 +4,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
-  <title>Testing</title>
+  <title>Playmical</title>
   <script src="./node_modules/gojs/release/go-debug.js"></script>
   <script src="./gojs.js"></script>
   <script src="./data.js"></script>
@@ -16,10 +16,10 @@
 
     .container {
       position: absolute;
-      width: 96%;
-      height: 92%;
-      left: 2%;
-      top: 4%;
+      width: 98%;
+      height: 680px;
+      left: 1%;
+      top: calc((100vh - 680px) / 2);
 
       background: #FEFEFE;
       border-radius: 16px;
@@ -28,41 +28,217 @@
 
     #home {
       position: absolute;
-      left: 1.5%;
-      top: 3%;
+      left: 20px;
+      top: 20px;
 
     }
 
+    #diagram {
+      height: 450px;
+      /* border: 1px solid rgb(0, 0, 0); */
+      margin-left: 100px;
+      margin-right: 100px;
+      margin-top: 10px;
+    }
+
     #helloGO {
-      width: 90%;
-      height: 70%;
-      border: 1px solid rgb(0, 0, 0);
+      width: 1040px;
+      height: 450px;
       margin: auto;
+    }
+
+    hr {
+      width: 90%;
+      margin: auto;
+      margin-top: 20px;
+    }
+
+    .buttonBox {
+      display: flex;
+      width: 1400px;
+      height: 190px;
+      margin: auto;
+      /* border: 1px solid rgb(0, 0, 0); */
+    }
+
+    .bt {
+      position: relative;
+      margin-top: 10px;
+      width: 150px;
+      height: 180px;
+      /* border: 1px solid rgb(0, 0, 0); */
+    }
+
+    div.bt a img {
+      display: block;
+      margin: auto;
+      margin-top: 20px;
+      width: 100px;
+      height: 100px;
+    }
+
+    p {
+      width: 102px;
+      height: 29px;
+      margin: auto;
+      margin-top: 15px;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 29px;
+      align-items: center;
+      text-align: center;
+    }
+
+    p#Hydrogen {
+      color: #31426C
+    }
+
+    p#Carbon {
+      color: #090516
+    }
+
+    p#Nitrogen {
+      color: #175716
+    }
+
+    p#Oxygen {
+      color: #155359
+    }
+
+    textarea {
+      position: relative;
+      width: 400px;
+      height: 175px;
+      left: 0px;
+      top: 10px;
+
+      background: #FFFFFF;
+      border: 5px solid #38464E;
+      box-sizing: border-box;
+      box-shadow: 5px 5px 0px #D7DBDE;
+      border-radius: 16px;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 36px;
+    }
+
+    div.bt-re {
+      width: 250px;
+    }
+
+    button {
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 44px;
+
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+    button.bt-re {
+      display: block;
+      width: 180px;
+      height: 70px;
+      margin: auto;
+      margin-top: calc((190px - 140px)/3);
+
+      background: #B50928;
+      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+    }
+
+
+    #confirm {
+      width: 172px;
+      height: 172px;
+      margin-top: calc((190px - 172px)/2);;
+
+      background: #05B34A;
+      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
     }
   </style>
 </head>
 
 <body onload="init()">
   <div class="container">
-    <a href="">
+    <a href="./intro.html">
       <img id="home" src="./Pic/home.png" />
     </a>
-    <div id="helloGO"></div>
-  </div>
+
+    <div id="diagram">
+      <div id="helloGO"></div>
+    </div>
 
 
-  <!-- <div>
-        <button id="Hydrogen" type="button" onclick="handleClick('Hydrogen')">Hydrogen</button>
-        <button id="Carbon" type="button" onclick="handleClick('Carbon')">Carbon</button>
-        <button id="Nitrogen" type="button" onclick="handleClick('Nitrogen')">Nitrogen</button>
-        <button id="Oxygen" type="button" onclick="handleClick('Oxygen')">Oxygen</button>
-        <button id="Reset" type="button" onclick="handleClick('Reset')">Reset</button>
-        <button id="Confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
-        <button id="Restart" type="button" onclick="restart()">Restart</button>
+    <hr />
+
+    <div class="buttonBox">
+      <div class="bt">
+        <a href="#">
+          <img src="./Pic/hydrogen_bt.png" onclick="handleClick('Hydrogen')">
+        </a>
+        <p id="Hydrogen">Hydrogen</p>
+      </div>
+
+      <div class="bt">
+        <a href="#">
+          <img src="./Pic/carbon_bt.png" onclick="handleClick('Carbon')">
+        </a>
+        <p id="Carbon">Carbon</p>
+      </div>
+
+      <div class="bt">
+        <a href="#">
+          <img src="./Pic/nitrogen_bt.png" onclick="handleClick('Nitrogen')">
+        </a>
+        <p id="Nitrogen">Nitrogen</p>
+      </div>
+
+      <div class="bt">
+        <a href="#">
+          <img src="./Pic/oxygen_bt.png" onclick="handleClick('Oxygen')">
+        </a>
+        <p id="Oxygen">Oxygen</p>
+      </div>
+
+      <textarea id="text">  input :  </textarea>
+      <div>
+        
+      </div>
+      <div class="bt-re">
+        <button class="bt-re" type="button" onclick="handleClick('Reset')">Reset</button>
+        <button class="bt-re" type="button" onclick="restart()">Restart</button>
+      </div>
+      <button id="confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- <div>
+      <button id="Hydrogen" type="button" onclick="handleClick('Hydrogen')">Hydrogen</button>
+      <button id="Carbon" type="button" onclick="handleClick('Carbon')">Carbon</button>
+      <button id="Nitrogen" type="button" onclick="handleClick('Nitrogen')">Nitrogen</button>
+      <button id="Oxygen" type="button" onclick="handleClick('Oxygen')">Oxygen</button>
+      <button id="Reset" type="button" onclick="handleClick('Reset')">Reset</button>
+      <button id="Confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
+      <button id="Restart" type="button" onclick="restart()">Restart</button>
     </div> -->
-  <div>
-
   </div>
+
 </body>
 
 </html>

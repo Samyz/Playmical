@@ -6,14 +6,14 @@ function init() {
     "helloGO", // must name or refer to the DIV HTML element
     {
       // have mouse wheel events zoom in and out instead of scroll up and down
-      "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom,
+      // "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom,
       allowVerticalScroll: false,
       "animationManager.initialAnimationStyle": go.AnimationManager.None,
       InitialAnimationStarting: function (e) {
         var animation = e.subject.defaultAnimation;
         animation.easing = go.Animation.EaseOutExpo;
         animation.duration = 1000;
-        animation.add(e.diagram, "scale", 0.1, 1);
+        animation.add(e.diagram, "scale", 0.1, 0.8);
         animation.add(e.diagram, "opacity", 0, 1);
       },
       // enable undo & redo
