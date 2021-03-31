@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #play {
+            position: absolute;
+            left: 1440px;
+            top: 345px;
+        }
+
+        #question {
+            position: absolute;
+            left: 1700px;
+            top: 800px;
+        }
+
+        #info {
+            position: absolute;
+            left: 1800px;
+            top: 800px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 5% auto;
+            /* 5% from the top and centered */
+            padding: 20px;
+            border: 5px solid darkviolet;
+            height: 600px;
+            width: 1500px;
+            /* Could be more or less, depending on screen size */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        /* The Close Button */
+        .close {
+            float: right;
+            margin-top: -60px;
+            margin-right: -60px;
+        }
+
+        .close:hover,
+        .close:focus {
+            cursor: pointer;
+        }
+
+        #about {
+            margin-top: -100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* The Modal (background) */
+        .modal2 {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content2 {
+            position: relative;
+            background-color: #fefefe;
+            margin: 5% auto;
+            /* 5% from the top and centered */
+            padding: 20px;
+            border: 5px solid darkviolet;
+            height: 600px;
+            width: 1500px;
+            /* Could be more or less, depending on screen size */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        /* The Close Button */
+        .close2 {
+            float: right;
+            margin-top: -60px;
+            margin-right: -60px;
+        }
+
+        .close2:hover,
+        .close2:focus {
+            cursor: pointer;
+        }
+
+        #how{
+            margin-top: -100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #infoCenter{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="bg" src="Pic/introBG.png" width="1920" height="900">
+    <img id="play" onmouseover="playOn()" onmouseout="playOut()" onclick="window.open('index.html','_self')"src="Pic/playRed.png" width="190" height="190">
+    <img id="question" onmouseover="questionOn()" onmouseout="questionOut()" src="Pic/questionRed.png" width="70" height="70">
+    <img id="info" onmouseover="infoOn()" onmouseout="infoOut()" src="Pic/infoRed.png" width="70" height="70">
+
+    <!-- Trigger/Open The Modal -->
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close"><img src="Pic/close.png" width="72" height="72"></span>
+            <img id="about" src="Pic/aboutUs.png" width="475" height="124">
+            <img src="Pic/questionModal.png" width="1200" height="500">
+        </div>
+
+    </div>
+
+     <!-- The Modal -->
+     <div id="myModal2" class="modal2">
+
+        <!-- Modal content -->
+        <div class="modal-content2">
+            <span class="close2"><img src="Pic/close.png" width="72" height="72"></span>
+            <img id="how" src="Pic/howPlay.png" width="475" height="124">
+            <img id="infoCenter" src="Pic/infoModal.png" width="1200" height="500">
+        </div>
+
+    </div>
+
+
+    <script>
+        function playOn() {
+            var i_id = document.getElementById("play");
+            var i_src = i_id.getAttribute("src");
+            i_id.setAttribute("src", "Pic/playPurple.png");
+        }
+        function playOut() {
+            var i_id = document.getElementById("play");
+            var i_src = i_id.getAttribute("src");
+            i_id.setAttribute("src", "Pic/playRed.png");
+        }
+        function questionOn() {
+            var i_id = document.getElementById("question");
+            var i_src = i_id.getAttribute("src");
+            i_id.setAttribute("src", "Pic/questionPurple.png");
+        }
+        function questionOut() {
+            var i_id = document.getElementById("question");
+            var i_src = i_id.getAttribute("src");
+            i_id.setAttribute("src", "Pic/questionRed.png");
+        }
+        function infoOn() {
+            var i_id = document.getElementById("info");
+            var i_src = i_id.getAttribute("src");
+            i_id.setAttribute("src", "Pic/infoPurple.png");
+        }
+        function infoOut() {
+            var i_id = document.getElementById("info");
+            var i_src = i_id.getAttribute("src");
+            i_id.setAttribute("src", "Pic/infoRed.png");
+        }
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("question");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Get the modal
+        var modal2 = document.getElementById("myModal2");
+
+        // Get the button that opens the modal
+        var btn2 = document.getElementById("info");
+
+        // Get the <span> element that closes the modal
+        var span2 = document.getElementsByClassName("close2")[0];
+
+        // When the user clicks on the button, open the modal
+        btn2.onclick = function () {
+            modal2.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span2.onclick = function () {
+            modal2.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
