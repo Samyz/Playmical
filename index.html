@@ -1,20 +1,57 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
-    <title>Testing</title>
-    <script src="./node_modules/gojs/release/go-debug.js"></script>
-    <script src="./gojs.js"></script>
-    <script src="./data.js"></script>
-    <script src="./state.js"></script>
-  </head>
-  <body onload="init()">
-    <div
-      id="helloGO"
-      style="width: 85%; height: 550px; border: 1px solid black; margin: auto;"
-    ></div>
-    <div>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
+  <title>Testing</title>
+  <script src="./node_modules/gojs/release/go-debug.js"></script>
+  <script src="./gojs.js"></script>
+  <script src="./data.js"></script>
+  <script src="./state.js"></script>
+  <style>
+    body {
+      background: #EFEEFE;
+    }
+
+    .container {
+      position: absolute;
+      width: 96%;
+      height: 92%;
+      left: 2%;
+      top: 4%;
+
+      background: #FEFEFE;
+      border-radius: 16px;
+      border: 1px solid rgb(200, 200, 200)
+    }
+
+    #home {
+      position: absolute;
+      left: 1.5%;
+      top: 3%;
+
+    }
+
+    #helloGO {
+      width: 90%;
+      height: 70%;
+      border: 1px solid rgb(0, 0, 0);
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body onload="init()">
+  <div class="container">
+    <a href="">
+      <img id="home" src="./Pic/home.png" />
+    </a>
+    <div id="helloGO"></div>
+  </div>
+
+
+  <!-- <div>
         <button id="Hydrogen" type="button" onclick="handleClick('Hydrogen')">Hydrogen</button>
         <button id="Carbon" type="button" onclick="handleClick('Carbon')">Carbon</button>
         <button id="Nitrogen" type="button" onclick="handleClick('Nitrogen')">Nitrogen</button>
@@ -22,6 +59,10 @@
         <button id="Reset" type="button" onclick="handleClick('Reset')">Reset</button>
         <button id="Confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
         <button id="Restart" type="button" onclick="restart()">Restart</button>
-    </div>
-  </body>
+    </div> -->
+  <div>
+
+  </div>
+</body>
+
 </html>
