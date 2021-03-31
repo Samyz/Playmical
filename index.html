@@ -17,9 +17,9 @@
     .container {
       position: absolute;
       width: 98%;
-      height: 96%;
+      height: 680px;
       left: 1%;
-      top: 2%;
+      top: calc((100vh - 680px) / 2);
 
       background: #FEFEFE;
       border-radius: 16px;
@@ -55,23 +55,26 @@
 
     .buttonBox {
       display: flex;
-      margin-left: 30px;
+      width: 1400px;
+      height: 190px;
+      margin: auto;
+      /* border: 1px solid rgb(0, 0, 0); */
     }
 
     .bt {
       position: relative;
       margin-top: 10px;
-      width: 180px;
+      width: 150px;
       height: 180px;
       /* border: 1px solid rgb(0, 0, 0); */
     }
 
-    img.Imgbt {
+    div.bt a img {
       display: block;
       margin: auto;
       margin-top: 20px;
-      width: 60%;
-      height: 60%;
+      width: 100px;
+      height: 100px;
     }
 
     p {
@@ -89,20 +92,78 @@
       text-align: center;
     }
 
-    p.Hydrogen {
+    p#Hydrogen {
       color: #31426C
     }
 
-    p.Carbon {
+    p#Carbon {
       color: #090516
     }
 
-    p.Nitrogen {
+    p#Nitrogen {
       color: #175716
     }
 
-    p.Oxygen {
+    p#Oxygen {
       color: #155359
+    }
+
+    textarea {
+      position: relative;
+      width: 400px;
+      height: 175px;
+      left: 0px;
+      top: 10px;
+
+      background: #FFFFFF;
+      border: 5px solid #38464E;
+      box-sizing: border-box;
+      box-shadow: 5px 5px 0px #D7DBDE;
+      border-radius: 16px;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 36px;
+    }
+
+    div.bt-re {
+      width: 250px;
+    }
+
+    button {
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 44px;
+
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+    button.bt-re {
+      display: block;
+      width: 180px;
+      height: 70px;
+      margin: auto;
+      margin-top: calc((190px - 140px)/3);
+
+      background: #B50928;
+      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+    }
+
+
+    #confirm {
+      width: 172px;
+      height: 172px;
+      margin-top: calc((190px - 172px)/2);;
+
+      background: #05B34A;
+      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
     }
   </style>
 </head>
@@ -123,31 +184,43 @@
     <div class="buttonBox">
       <div class="bt">
         <a href="#">
-          <img class="Imgbt" src="./Pic/hydrogen_bt.png" onclick="handleClick('Hydrogen')">
+          <img src="./Pic/hydrogen_bt.png" onclick="handleClick('Hydrogen')">
         </a>
-        <p class="Hydrogen">Hydrogen</p>
+        <p id="Hydrogen">Hydrogen</p>
       </div>
 
       <div class="bt">
         <a href="#">
-          <img class="Imgbt" src="./Pic/carbon_bt.png" onclick="handleClick('Carbon')">
+          <img src="./Pic/carbon_bt.png" onclick="handleClick('Carbon')">
         </a>
-        <p class="Carbon">Carbon</p>
+        <p id="Carbon">Carbon</p>
       </div>
 
       <div class="bt">
         <a href="#">
-          <img class="Imgbt" src="./Pic/nitrogen_bt.png" onclick="handleClick('Nitrogen')">
+          <img src="./Pic/nitrogen_bt.png" onclick="handleClick('Nitrogen')">
         </a>
-        <p class="Nitrogen">Nitrogen</p>
+        <p id="Nitrogen">Nitrogen</p>
       </div>
 
       <div class="bt">
         <a href="#">
-          <img class="Imgbt" src="./Pic/oxygen_bt.png" onclick="handleClick('Oxygen')">
+          <img src="./Pic/oxygen_bt.png" onclick="handleClick('Oxygen')">
         </a>
-        <p class="Oxygen">Oxygen</p>
+        <p id="Oxygen">Oxygen</p>
       </div>
+
+      <textarea id="text">  input :  </textarea>
+      <div>
+        
+      </div>
+      <div class="bt-re">
+        <button class="bt-re" type="button" onclick="handleClick('Reset')">Reset</button>
+        <button class="bt-re" type="button" onclick="restart()">Restart</button>
+      </div>
+      <button id="confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
+
+
 
     </div>
 
