@@ -3,22 +3,45 @@
 
 <head>
     <style>
-        #play {
+        body {
+            background: #EFEEFE;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            padding-top: 45%;
+        }
+
+        #bg {
             position: absolute;
-            left: 1440px;
-            top: 345px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: auto;
+
+        }
+
+        .playContainer {
+            position: absolute;
+            left: 74.55%;
+            top: 39.3%;
+            width: 10%;
+            padding-top: 10%;
         }
 
         #question {
             position: absolute;
-            left: 1700px;
-            top: 800px;
+            right: 130px;
+            bottom: -10px;
         }
 
         #info {
             position: absolute;
-            left: 1800px;
-            top: 800px;
+            right: 40px;
+            bottom: -10px;
         }
 
         /* The Modal (background) */
@@ -124,14 +147,14 @@
             cursor: pointer;
         }
 
-        #how{
+        #how {
             margin-top: -100px;
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
 
-        #infoCenter{
+        #infoCenter {
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -140,46 +163,56 @@
 </head>
 
 <body>
-    <img id="bg" src="Pic/introBG.png" width="1920" height="900">
-    <img id="play" onmouseover="playOn()" onmouseout="playOut()" onclick="window.open('index.html','_self')"src="Pic/playRed.png" width="190" height="190">
-    <img id="question" onmouseover="questionOn()" onmouseout="questionOut()" src="Pic/questionRed.png" width="70" height="70">
-    <img id="info" onmouseover="infoOn()" onmouseout="infoOut()" src="Pic/infoRed.png" width="70" height="70">
+    <div class="container">
 
-    <!-- Trigger/Open The Modal -->
+        <img id="bg" src="Pic/introBG.png">
+        <div class="playContainer">
+            <img id="playImg" onmouseover="playOn()" onmouseout="playOut()" onclick="window.open('index.html','_self')"
+            src="Pic/playRed.png" style="height: 100%; width: 100%; top: 0; position: absolute;">
+        </div>
+        
+        <img id="question" onmouseover="questionOn()" onmouseout="questionOut()" src="Pic/questionRed.png" width="70"
+            height="70">
+        <img id="info" onmouseover="infoOn()" onmouseout="infoOut()" src="Pic/infoRed.png" width="70" height="70">
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+        <!-- Trigger/Open The Modal -->
 
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close"><img src="Pic/close.png" width="72" height="72"></span>
-            <img id="about" src="Pic/aboutUs.png" width="475" height="124">
-            <img src="Pic/questionModal.png" width="1200" height="500">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close"><img src="Pic/close.png" width="72" height="72"></span>
+                <img id="about" src="Pic/aboutUs.png" width="475" height="124">
+                <img src="Pic/questionModal.png" width="1200" height="500">
+            </div>
+
         </div>
 
-    </div>
+        <!-- The Modal -->
+        <div id="myModal2" class="modal2">
 
-     <!-- The Modal -->
-     <div id="myModal2" class="modal2">
+            <!-- Modal content -->
+            <div class="modal-content2">
+                <span class="close2"><img src="Pic/close.png" width="72" height="72"></span>
+                <img id="how" src="Pic/howPlay.png" width="475" height="124">
+                <img id="infoCenter" src="Pic/infoModal.png" width="1200" height="500">
+            </div>
 
-        <!-- Modal content -->
-        <div class="modal-content2">
-            <span class="close2"><img src="Pic/close.png" width="72" height="72"></span>
-            <img id="how" src="Pic/howPlay.png" width="475" height="124">
-            <img id="infoCenter" src="Pic/infoModal.png" width="1200" height="500">
         </div>
+        
 
     </div>
 
 
     <script>
         function playOn() {
-            var i_id = document.getElementById("play");
+            var i_id = document.getElementById("playImg");
             var i_src = i_id.getAttribute("src");
             i_id.setAttribute("src", "Pic/playPurple.png");
         }
         function playOut() {
-            var i_id = document.getElementById("play");
+            var i_id = document.getElementById("playImg");
             var i_src = i_id.getAttribute("src");
             i_id.setAttribute("src", "Pic/playRed.png");
         }
