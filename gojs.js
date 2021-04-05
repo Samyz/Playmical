@@ -161,7 +161,6 @@ function highlightPath(last_state, current_state) {
   colorPatht = '#44404E';
   for (p of diagram.model.linkDataArray) {
     if (p.from == last_state && p.to == current_state) {
-      // console.log(p);
       diagram.model.set(p, 'colorPath', colorPathf);
       diagram.model.set(p, 'colorText', colorTextf);
       diagram.model.set(p, 'bold', true);
@@ -206,7 +205,11 @@ function handleClick(button) {
     eraseNode();
   }
   console.log(machine.current_State.name);
+
   updateInputString();
+
+  if (button === "Confirm")
+    handleConfirm()
 
 }
 
@@ -240,6 +243,31 @@ function updateInputString() {
     }
   }
   element.value = newText;
+}
+
+function handleConfirm() {
+  if (machine.current_State.name === "final") {
+    displayResult();
+  }
+  else {
+    displayCaution();
+  }
+  document.getElementById("modal").style.display = "block";
+}
+
+function displayCaution() {
+  document.getElementById("modal-content").style.borderColor = "#B50928";
+  document.getElementById("modal-topic").src = "./Pic/Caution.png"
+  document.getElementById("content-result").style.display = "none";
+  document.getElementById("content-caution").style.display = "block";
+}
+function displayResult() {
+  document.getElementById("modal-content").style.borderColor = "#4F388F";
+  document.getElementById("modal-topic").src = "./Pic/Result.png"
+  document.getElementById("content-result").style.display = "block";
+  document.getElementById("content-caution").style.display = "none";
+
+  // เพิ่ม JS
 }
 
 

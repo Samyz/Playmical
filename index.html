@@ -192,6 +192,101 @@
       box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
       border-radius: 16px;
     }
+
+    #modal {
+      display: none;
+      position: fixed;
+
+      z-index: 2;
+
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    #modal-content {
+      position: absolute;
+      background-color: #fefefe;
+
+      width: 90%;
+      height: 80%;
+      left: calc(5% - 8px);
+      top: 10%;
+
+      border: 8px solid #4F388F;
+      border-radius: 16px;
+
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    #close {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+    }
+
+    #close:hover,
+    #close:focus {
+      cursor: pointer;
+    }
+
+    #modal-topic {
+      position: absolute;
+      left: calc((100% - 25%) / 2);
+      top: -8%;
+      width: 25%;
+    }
+
+    #content {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      left: 5%;
+      top: 10%;
+    }
+
+    #content-caution {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+    }
+
+    div#content-caution img {
+      position: absolute;
+      width: 25%;
+      left: calc((100% - 25%) / 2);
+      height: auto;
+    }
+
+    div#content-caution p {
+      position: absolute;
+      width: 600px;
+      height: 185px;
+      left: calc((100% - 600px)/2);
+      top: 55%;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 90px;
+
+      text-align: center;
+
+      color: #000000;
+    }
+
+    #content-result {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 
@@ -245,23 +340,35 @@
         <button class="bt-re" type="button" onclick="restart()">Restart</button>
       </div>
       <button id="confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
-
     </div>
 
+
+  </div>
+
+  <div id="modal">
+    <div id="modal-content">
+      <span id="close"><img src="Pic/close.png" width="72" height="72" onclick="handleClose()"></span>
+      <img id="modal-topic" src="./Pic/Result.png">
+      <div id="content">
+        <div id="content-caution">
+          <img src="./Pic/caution-content.png">
+          <p>อ๊ะๆ คุณยังเลือกสารไม่ครบ 2 สาร<br>กรุณาเลือกสารที่ต้องการผสมให้ครบก่อน</p>
+        </div>
+        <div id="content-result">
+          <!-- เพิ่ม Html ตรงนี้ -->
+          <p>Result</p>
+        </div>
+      </div>
+    </div>
   </div>
 
 
   <script>
-    HydrogenOn = () => {
-      var element = document.getElementById("HydrogenImg");
-      element.src = `./Pic/hydrogen_bt_on.png`;
-    }
-    HydrogenOut = () => {
-      var element = document.getElementById("HydrogenImg");
-      element.src = "./Pic/hydrogen_bt_out.png";
+    function handleClose() {
+      var ele = document.getElementById("modal");
+      ele.style.display = "none";
     }
   </script>
-
   <script src="./node_modules/gojs/release/go-debug.js"></script>
   <script src="./gojs.js"></script>
   <script src="./data.js"></script>
