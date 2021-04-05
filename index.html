@@ -5,10 +5,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
   <title>Playmical</title>
-  <script src="./node_modules/gojs/release/go-debug.js"></script>
-  <script src="./gojs.js"></script>
-  <script src="./data.js"></script>
-  <script src="./state.js"></script>
+
   <style>
     body {
       background: #EFEEFE;
@@ -30,11 +27,19 @@
       position: absolute;
       left: 20px;
       top: 20px;
+      transition: all .2s;
+    }
 
+    #home:hover {
+      transform: scale(1.05);
+    }
+
+    #home:active {
+      transform: scale(.95);
     }
 
     #diagram {
-      height: 450px;
+      height: 445px;
       /* border: 1px solid rgb(0, 0, 0); */
       margin-left: 100px;
       margin-right: 100px;
@@ -75,6 +80,15 @@
       margin-top: 20px;
       width: 100px;
       height: 100px;
+      transition: all .3s;
+    }
+
+    div.bt a img:hover {
+      transform: scale(1.05);
+    }
+
+    div.bt a img:active {
+      transform: scale(.95);
     }
 
     p {
@@ -120,6 +134,9 @@
       box-sizing: border-box;
       box-shadow: 5px 5px 0px #D7DBDE;
       border-radius: 16px;
+      outline: none;
+
+      padding-left: 10px;
 
       font-family: Cabin;
       font-style: normal;
@@ -129,37 +146,47 @@
     }
 
     div.bt-re {
-      width: 250px;
+      width: 230px;
     }
 
     button {
+      display: block;
+      background-color: #B50928;
+      outline: none;
+      width: 160px;
+
+
+      margin: auto;
+      margin-top: 15px;
+
+      color: #FFFFFF;
+      padding: 13px 0px;
       font-family: Cabin;
       font-style: normal;
       font-weight: 500;
       font-size: 28px;
       line-height: 44px;
 
-      text-align: center;
-      color: #FFFFFF;
-    }
-
-    button.bt-re {
-      display: block;
-      width: 180px;
-      height: 70px;
-      margin: auto;
-      margin-top: calc((190px - 140px)/3);
-
-      background: #B50928;
-      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      transition: all .2s;
+      cursor: pointer;
       border-radius: 16px;
+      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      border-bottom: 4px solid lighten(gray, 70%);
     }
 
+    button:hover {
+      transform: scale(1.03);
+    }
+
+    button:active {
+      transform: scale(.98);
+    }
 
     #confirm {
       width: 172px;
       height: 172px;
-      margin-top: calc((190px - 172px)/2);;
+      margin-top: calc((190px - 172px)/2);
+      ;
 
       background: #05B34A;
       box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
@@ -178,13 +205,12 @@
       <div id="helloGO"></div>
     </div>
 
-
     <hr />
 
     <div class="buttonBox">
       <div class="bt">
         <a href="#">
-          <img src="./Pic/hydrogen_bt.png" onclick="handleClick('Hydrogen')">
+          <img id="HydrogenImg" src="./Pic/hydrogen_bt.png" onclick="handleClick('Hydrogen')">
         </a>
         <p id="Hydrogen">Hydrogen</p>
       </div>
@@ -210,9 +236,9 @@
         <p id="Oxygen">Oxygen</p>
       </div>
 
-      <textarea id="text">  input :  </textarea>
+      <textarea id="textarea" readonly>Input : </textarea>
       <div>
-        
+
       </div>
       <div class="bt-re">
         <button class="bt-re" type="button" onclick="handleClick('Reset')">Reset</button>
@@ -220,24 +246,26 @@
       </div>
       <button id="confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
 
-
-
     </div>
 
-
-
-
-
-    <!-- <div>
-      <button id="Hydrogen" type="button" onclick="handleClick('Hydrogen')">Hydrogen</button>
-      <button id="Carbon" type="button" onclick="handleClick('Carbon')">Carbon</button>
-      <button id="Nitrogen" type="button" onclick="handleClick('Nitrogen')">Nitrogen</button>
-      <button id="Oxygen" type="button" onclick="handleClick('Oxygen')">Oxygen</button>
-      <button id="Reset" type="button" onclick="handleClick('Reset')">Reset</button>
-      <button id="Confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
-      <button id="Restart" type="button" onclick="restart()">Restart</button>
-    </div> -->
   </div>
+
+
+  <script>
+    HydrogenOn = () => {
+      var element = document.getElementById("HydrogenImg");
+      element.src = `./Pic/hydrogen_bt_on.png`;
+    }
+    HydrogenOut = () => {
+      var element = document.getElementById("HydrogenImg");
+      element.src = "./Pic/hydrogen_bt_out.png";
+    }
+  </script>
+
+  <script src="./node_modules/gojs/release/go-debug.js"></script>
+  <script src="./gojs.js"></script>
+  <script src="./data.js"></script>
+  <script src="./state.js"></script>
 
 </body>
 

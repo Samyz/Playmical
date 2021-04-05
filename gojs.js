@@ -22,7 +22,7 @@ function init() {
         return new go.Point(Math.floor(pt.x), Math.floor(pt.y));
       },
       "draggingTool.isEnabled": false,
-      positionComputation: function(d, p) { return new go.Point(-600, -20);},
+      positionComputation: function (d, p) { return new go.Point(-600, -20); },
     }
   );
 
@@ -68,10 +68,10 @@ function init() {
       new go.Binding('stroke', 'colorPath', function (progress) {
         return progress == null ? '#9F9DA3' : progress;
       }),
-      new go.Binding('strokeWidth', 'bold', function(progress) {
+      new go.Binding('strokeWidth', 'bold', function (progress) {
         return progress ? 4 : 1;
       })
-      ),
+    ),
     $(
       go.Shape, // the "to" end arrowhead
       { toArrow: "Standard", stroke: null },
@@ -79,7 +79,7 @@ function init() {
         return progress == null ? '#9F9DA3' : progress;
       }),
       new go.Binding('scale', 'bold', function (progress) {
-        return progress==true ? 2 : 1;
+        return progress == true ? 2 : 1;
       })
     ),
     $(
@@ -114,7 +114,7 @@ function init() {
       locationSpot: go.Spot.Center,
     },
     $(go.Shape, "Circle", {
-      fill: $(go.Brush, "Radial", { 0.0: "#2CB6B1", 1.0: "#FFFFFF"}),//, 0.9: "#FFFFFF" 
+      fill: $(go.Brush, "Radial", { 0.0: "#2CB6B1", 1.0: "#FFFFFF" }),//, 0.9: "#FFFFFF" 
       stroke: null,
       desiredSize: new go.Size(85, 85),
     })
@@ -129,13 +129,14 @@ function init() {
   }
   highlightNode(machine.current_State.key)
   highlightPath(machine.prev_State.key, machine.current_State.key)
+
 }
 
 function highlightNode(key) {
   var node = diagram.findNodeForKey(key);
-  
+
   for (p of diagram.model.nodeDataArray) {
-    if (p.key == key){
+    if (p.key == key) {
       diagram.model.set(p, 'isHighlighted', true);
       break;
     }
@@ -147,7 +148,7 @@ function highlightNode(key) {
   );
 }
 
-function eraseNode() { 
+function eraseNode() {
   for (p of diagram.model.nodeDataArray) {
     diagram.model.set(p, 'isHighlighted', false);
   }
@@ -166,12 +167,12 @@ function highlightPath(last_state, current_state) {
       diagram.model.set(p, 'bold', true);
       // break;
     }
-    else if(p.from == current_state){
+    else if (p.from == current_state) {
       diagram.model.set(p, 'colorPath', colorPatht);
       diagram.model.set(p, 'colorText', colorTextt);
       diagram.model.set(p, 'bold', true);
-      }
-    else{
+    }
+    else {
       diagram.model.set(p, 'bold', false);
       diagram.model.set(p, 'colorPath', null);
       diagram.model.set(p, 'colorText', null);
@@ -201,10 +202,12 @@ function handleClick(button) {
   highlightPath(machine.prev_State.key, machine.current_State.key);
 
   // Reset erase Node
-  if (machine.current_State.name == 'start' && button == 'Reset'){
+  if (machine.current_State.name == 'start' && button == 'Reset') {
     eraseNode();
   }
   console.log(machine.current_State.name);
+  updateInputString();
+
 }
 
 function restart() {
@@ -213,4 +216,30 @@ function restart() {
   eraseNode();
   highlightNode(machine.current_State.key)
   highlightPath(machine.prev_State.key, machine.current_State.key)
+  updateInputString();
 }
+
+function updateInputString() {
+  var element = document.getElementById("textarea");
+  var newText = "Input : ";
+  for (let i = 0; i < machine.input_String.length; i++) {
+    if (machine.input_String[i] === "Hydrogen") {
+      newText += "H ";
+    }
+    else if (machine.input_String[i] === "Carbon") {
+      newText += "C ";
+    }
+    else if (machine.input_String[i] === "Nitrogen") {
+      newText += "N ";
+    }
+    else if (machine.input_String[i] === "Oxygen") {
+      newText += "O ";
+    }
+    else {
+      newText += machine.input_String[i] + " ";
+    }
+  }
+  element.value = newText;
+}
+
+
