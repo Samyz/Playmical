@@ -197,6 +197,11 @@ function handleClick(button) {
   // set current state = next state
   machine.setCurrentState(next);
 
+  if (machine.prev_State.name === "H" || machine.prev_State.name === "C" || machine.prev_State.name === "N" || machine.prev_State.name === "O") {
+    machine.substanceInput[0].name = machine.prev_State.name;
+    machine.substanceInput[1].name = transformSubstanceByFullname(button);
+  }
+
   highlightNode(machine.current_State.key);
   highlightPath(machine.prev_State.key, machine.current_State.key);
 
@@ -314,26 +319,24 @@ function displayResult() {
   //updateAdvantages
   let advantagesList = machine.getAdvantagesByName(result);
   let eleAdvantagesList = document.getElementById("adventageList");
-  updateItem(eleAdvantagesList,advantagesList);
+  updateItem(eleAdvantagesList, advantagesList);
 
   //updateDisAdvantages
 
   let disAdvantagesList = machine.getDisAdvantagesByName(result);
   let eleDisAdvantagesList = document.getElementById("disadventageList");
-  updateItem(eleDisAdvantagesList,disAdvantagesList);
- 
+  updateItem(eleDisAdvantagesList, disAdvantagesList);
+
 }
 
 function getResult() {
   return machine.prev_State.name;
 }
 function getSubstance_1() {
-  let len = machine.input_String.length;
-  return machine.input_String[len - 3]
+  return machine.substanceInput[0].name;
 }
 function getSubstance_2() {
-  let len = machine.input_String.length;
-  return machine.input_String[len - 2]
+  return machine.substanceInput[1].name;
 }
 
 function updateItem(ele, list) {

@@ -7,6 +7,14 @@ let machine = {
         name: 'none',
         key: -1
     },
+    substanceInput: [
+        {
+            name: 'start',
+        },
+        {
+            name: 'start',
+        }
+    ],
     input_String: [],
     StateMetrix: {
         start: {
@@ -29,7 +37,7 @@ let machine = {
             Reset: 'start',
             key: 1,
             fullname: "Hydrogen (H)",
-            imgPath : "./Pic/H.png"
+            imgPath: "./Pic/H.png"
         },
         C: {
             name: 'C',
@@ -41,7 +49,7 @@ let machine = {
             Reset: 'start',
             key: 2,
             fullname: "Carbon (C)",
-            imgPath : "./Pic/C.png"
+            imgPath: "./Pic/C.png"
         },
         N: {
             name: 'N',
@@ -53,7 +61,7 @@ let machine = {
             Reset: 'start',
             key: 3,
             fullname: "Nitrogen (N)",
-            imgPath : "./Pic/N.png"
+            imgPath: "./Pic/N.png"
         },
         O: {
             name: 'O',
@@ -65,7 +73,7 @@ let machine = {
             Reset: 'start',
             key: 4,
             fullname: "Oxygen (O)",
-            imgPath : "./Pic/O.png"
+            imgPath: "./Pic/O.png"
         },
         HH: {
             name: 'HH',
@@ -434,19 +442,22 @@ let machine = {
             key: -1
         };
     },
+    getNameByFullName : function(fullname){
+        return 
+    },
     getFullNameByName: function (name) {
         return this.StateMetrix[name].fullname;
     },
-    getPathByName : function (name) {
+    getPathByName: function (name) {
         return this.StateMetrix[name].imgPath;
     },
-    getDescriptionByname : function(name){
+    getDescriptionByname: function (name) {
         return this.StateMetrix[name].description;
     },
-    getAdvantagesByName: function(name){
+    getAdvantagesByName: function (name) {
         return this.StateMetrix[name].advantages;
     },
-    getDisAdvantagesByName: function(name){
+    getDisAdvantagesByName: function (name) {
         return this.StateMetrix[name].disadvantages;
     }
 }
