@@ -286,6 +286,42 @@
       color: #000000;
     }
 
+    #content-caution-restart {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+    }
+
+    div#content-caution-restart img {
+      position: absolute;
+      left: calc((100% - 18%) / 2);
+      width: 18%;
+      height: auto;
+      top: 10%;
+    }
+
+    div#content-caution-restart p {
+      position: absolute;
+      width: 600px;
+      height: 120px;
+      left: calc((100% - 600px)/2);
+      top: 65%;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 60px;
+
+      text-align: center;
+
+      color: #000000;
+    }
+
+
+
     #content-result {
       display: flex;
       flex-direction: column;
@@ -495,7 +531,11 @@
       <div id="content">
         <div id="content-caution">
           <img src="./Pic/caution-content.png">
-          <p>อ๊ะๆ คุณยังเลือกสารไม่ครบ 2 สาร<br>กรุณาเลือกสารที่ต้องการผสมให้ครบก่อน</p>
+          <p><b>อ๊ะๆ</b> คุณยังเลือกสารไม่ครบ <b>2</b> สาร<br>กรุณาเลือกสารที่ต้องการผสมให้ครบก่อน</p>
+        </div>
+        <div id="content-caution-restart">
+          <img src="./Pic/caution-restart-content.png">
+          <p>กรุณากดปุ่ม <b>Restart</b><br>เพื่อเริ่มต้นใหม่</p>
         </div>
         <div id="content-result">
           <div id="equation">

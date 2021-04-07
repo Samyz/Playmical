@@ -273,7 +273,10 @@ function handleConfirm() {
   if (machine.current_State.name === "final") {
     displayResult();
   }
-  else {
+  else if(machine.current_State.name === "trap") {
+    displayRestart();
+  }
+  else{
     displayCaution();
   }
   document.getElementById("modal").style.display = "block";
@@ -282,15 +285,29 @@ function handleConfirm() {
 function displayCaution() {
   document.getElementById("modal-content").style.borderColor = "#B50928";
   document.getElementById("modal-topic").src = "./Pic/Caution.png"
-  document.getElementById("content-result").style.display = "none";
+
   document.getElementById("content-caution").style.display = "block";
+  document.getElementById("content-caution-restart").style.display = "none";
+  document.getElementById("content-result").style.display = "none";
+}
+
+function displayRestart(){
+  document.getElementById("modal-content").style.borderColor = "#B50928";
+  document.getElementById("modal-topic").src = "./Pic/Caution.png"
+
+  document.getElementById("content-caution").style.display = "none";
+  document.getElementById("content-caution-restart").style.display = "block";
+  document.getElementById("content-result").style.display = "none";
+  
 }
 
 function displayResult() {
   document.getElementById("modal-content").style.borderColor = "#4F388F";
   document.getElementById("modal-topic").src = "./Pic/Result.png"
-  document.getElementById("content-result").style.display = "flex";
+ 
   document.getElementById("content-caution").style.display = "none";
+  document.getElementById("content-caution-restart").style.display = "none";
+  document.getElementById("content-result").style.display = "flex";
 
   let substance_1 = transformSubstanceByFullname(getSubstance_1());
   let substance_2 = transformSubstanceByFullname(getSubstance_2());
