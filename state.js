@@ -287,7 +287,7 @@ let machine = {
 
                 {
                     description: "เมื่อเข้าสู่ร่างกายส่งผลให้สมองขาดออกซิเจนได้",
-                    imgPath: "./Pic/result/CO/CO-cons2.jpg"
+                    imgPath: "./Pic/result/CO/CO-cons2.jpeg"
                 }
             ]
         },
