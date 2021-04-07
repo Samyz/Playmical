@@ -5,10 +5,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
   <title>Playmical</title>
-  <script src="./node_modules/gojs/release/go-debug.js"></script>
-  <script src="./gojs.js"></script>
-  <script src="./data.js"></script>
-  <script src="./state.js"></script>
+
   <style>
     body {
       background: #EFEEFE;
@@ -30,11 +27,20 @@
       position: absolute;
       left: 20px;
       top: 20px;
+      transition: all .2s;
+      cursor: pointer;
+    }
 
+    #home:hover {
+      transform: scale(1.05);
+    }
+
+    #home:active {
+      transform: scale(.95);
     }
 
     #diagram {
-      height: 450px;
+      height: 445px;
       /* border: 1px solid rgb(0, 0, 0); */
       margin-left: 100px;
       margin-right: 100px;
@@ -66,15 +72,24 @@
       margin-top: 10px;
       width: 150px;
       height: 180px;
-      /* border: 1px solid rgb(0, 0, 0); */
     }
 
-    div.bt a img {
+    div.bt img {
       display: block;
       margin: auto;
       margin-top: 20px;
       width: 100px;
       height: 100px;
+      transition: all .3s;
+      cursor: pointer;
+    }
+
+    div.bt img:hover {
+      transform: scale(1.05);
+    }
+
+    div.bt img:active {
+      transform: scale(.95);
     }
 
     p {
@@ -120,6 +135,9 @@
       box-sizing: border-box;
       box-shadow: 5px 5px 0px #D7DBDE;
       border-radius: 16px;
+      outline: none;
+
+      padding-left: 10px;
 
       font-family: Cabin;
       font-style: normal;
@@ -129,41 +147,296 @@
     }
 
     div.bt-re {
-      width: 250px;
+      width: 230px;
     }
 
     button {
+      display: block;
+      background-color: #B50928;
+      outline: none;
+      width: 160px;
+
+
+      margin: auto;
+      margin-top: 15px;
+
+      color: #FFFFFF;
+      padding: 13px 0px;
       font-family: Cabin;
       font-style: normal;
       font-weight: 500;
       font-size: 28px;
       line-height: 44px;
 
-      text-align: center;
-      color: #FFFFFF;
-    }
-
-    button.bt-re {
-      display: block;
-      width: 180px;
-      height: 70px;
-      margin: auto;
-      margin-top: calc((190px - 140px)/3);
-
-      background: #B50928;
-      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      transition: all .2s;
+      cursor: pointer;
       border-radius: 16px;
+      box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
+      border-bottom: 4px solid lighten(gray, 70%);
     }
 
+    button:hover {
+      transform: scale(1.03);
+    }
+
+    button:active {
+      transform: scale(.98);
+    }
 
     #confirm {
       width: 172px;
       height: 172px;
-      margin-top: calc((190px - 172px)/2);;
+      margin-top: calc((190px - 172px)/2);
+      ;
 
       background: #05B34A;
       box-shadow: inset 0px -8px 4px rgba(0, 0, 0, 0.25);
       border-radius: 16px;
+    }
+
+    #modal {
+      display: none;
+      position: fixed;
+
+      z-index: 2;
+
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    #modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      background-color: #fefefe;
+
+      width: 90%;
+      height: 80%;
+      left: calc(5% - 8px);
+      top: 10%;
+
+      border: 8px solid #4F388F;
+      border-radius: 16px;
+
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    #close {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+    }
+
+    #close:hover,
+    #close:focus {
+      cursor: pointer;
+    }
+
+    #modal-topic {
+      position: absolute;
+      top: -45px;
+      height: 90px;
+    }
+
+    #content {
+      position: absolute;
+      top: 40px;
+      bottom: 40px;
+
+      width: 94%;
+      overflow: auto;
+      /* border: 1px solid rgb(0, 0, 0); */
+    }
+
+    #content-caution {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+    }
+
+    div#content-caution img {
+      position: absolute;
+      width: 25%;
+      left: calc((100% - 25%) / 2);
+      height: auto;
+    }
+
+    div#content-caution p {
+      position: absolute;
+      width: 600px;
+      height: 185px;
+      left: calc((100% - 600px)/2);
+      top: 55%;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 90px;
+
+      text-align: center;
+
+      color: #000000;
+    }
+
+    #content-result {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+      height: 100%;
+    }
+
+    #equation {
+      align-self: center;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+
+    div.substance {
+      display: flex;
+      flex-direction: column;
+      width: 280px;
+    }
+
+    div.substance img {
+      align-self: center;
+      width: 120px;
+      height: 120px;
+
+    }
+
+    div.substance p {
+
+      width: 100%;
+      height: 50px;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 44px;
+      text-align: center;
+
+      color: #000000;
+    }
+
+    #symbol {
+      margin-top: 42px;
+    }
+
+    div#result img {
+      border-radius: 50%;
+      border: 1px solid #000000;
+    }
+
+    .line {
+      width: 100%;
+      height: 40px;
+      align-self: center;
+    }
+
+    #danger {
+
+      width: 500px;
+      height: 50px;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 60px;
+
+      color: #B50928;
+
+    }
+
+    #description {
+
+      width: 1200px;
+      height: auto;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 60px;
+    }
+
+    .contraner-avatage {
+      display: flex;
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+
+    .adventageBox {
+      width: 50%;
+      height: auto;
+    }
+
+    .disAdventageBox {
+      width: 50%;
+      height: auto;
+    }
+
+    #adventageBanner {
+      width: 200px;
+      height: auto;
+    }
+
+    #disAdventageBanner {
+      width: 200px;
+      height: auto;
+    }
+
+
+    #adventageItem {
+      display: flex;
+      align-items: center;
+
+      margin-top: 10px;
+      margin-bottom: 20px;
+
+      width: 90%;
+      height: 150px;
+
+      background: #EFEEFE;
+      box-shadow: 4px 4px 4px #B3AFEA;
+      border-radius: 16px;
+    }
+
+    div#adventageItem img {
+      margin-left: 30px;
+      margin-right: 30px;
+
+      width: 120px;
+      min-width: 120px;
+      height: 120px;
+      min-height: 120px;
+
+      border-radius: 50%;
+      border: 1px solid #000000;
+    }
+
+    div#adventageItem div {
+      margin-right: 10px;
+
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 35px;
+      color: #000000;
     }
   </style>
 </head>
@@ -178,66 +451,115 @@
       <div id="helloGO"></div>
     </div>
 
-
     <hr />
 
     <div class="buttonBox">
       <div class="bt">
-        <a href="#">
-          <img src="./Pic/hydrogen_bt.png" onclick="handleClick('Hydrogen')">
-        </a>
+        <img id="HydrogenImg" src="./Pic/hydrogen_bt.png" onclick="handleClick('Hydrogen')">
         <p id="Hydrogen">Hydrogen</p>
       </div>
 
       <div class="bt">
-        <a href="#">
-          <img src="./Pic/carbon_bt.png" onclick="handleClick('Carbon')">
-        </a>
+        <img src="./Pic/carbon_bt.png" onclick="handleClick('Carbon')">
         <p id="Carbon">Carbon</p>
       </div>
 
       <div class="bt">
-        <a href="#">
-          <img src="./Pic/nitrogen_bt.png" onclick="handleClick('Nitrogen')">
-        </a>
+        <img src="./Pic/nitrogen_bt.png" onclick="handleClick('Nitrogen')">
         <p id="Nitrogen">Nitrogen</p>
       </div>
 
       <div class="bt">
-        <a href="#">
-          <img src="./Pic/oxygen_bt.png" onclick="handleClick('Oxygen')">
-        </a>
+        <img src="./Pic/oxygen_bt.png" onclick="handleClick('Oxygen')">
         <p id="Oxygen">Oxygen</p>
       </div>
 
-      <textarea id="text">  input :  </textarea>
+      <textarea id="textarea" readonly>Input : </textarea>
       <div>
-        
+
       </div>
       <div class="bt-re">
         <button class="bt-re" type="button" onclick="handleClick('Reset')">Reset</button>
         <button class="bt-re" type="button" onclick="restart()">Restart</button>
       </div>
       <button id="confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
-
-
-
     </div>
 
 
-
-
-
-    <!-- <div>
-      <button id="Hydrogen" type="button" onclick="handleClick('Hydrogen')">Hydrogen</button>
-      <button id="Carbon" type="button" onclick="handleClick('Carbon')">Carbon</button>
-      <button id="Nitrogen" type="button" onclick="handleClick('Nitrogen')">Nitrogen</button>
-      <button id="Oxygen" type="button" onclick="handleClick('Oxygen')">Oxygen</button>
-      <button id="Reset" type="button" onclick="handleClick('Reset')">Reset</button>
-      <button id="Confirm" type="button" onclick="handleClick('Confirm')">Confirm</button>
-      <button id="Restart" type="button" onclick="restart()">Restart</button>
-    </div> -->
   </div>
+
+  <div id="modal">
+    <div id="modal-content">
+      <span id="close"><img src="Pic/close.png" width="72" height="72" onclick="handleClose()"></span>
+      <img id="modal-topic" src="./Pic/Result.png">
+      <div id="content">
+        <div id="content-caution">
+          <img src="./Pic/caution-content.png">
+          <p>อ๊ะๆ คุณยังเลือกสารไม่ครบ 2 สาร<br>กรุณาเลือกสารที่ต้องการผสมให้ครบก่อน</p>
+        </div>
+        <div id="content-result">
+          <div id="equation">
+            <div class="substance" id="substance_1">
+              <img src="./Pic/C.png">
+              <p>Carbon (C)</p>
+            </div>
+            <img id="symbol" src="Pic/+.png" width="40px" height="40px">
+            <div class="substance" id="substance_2">
+              <img src="./Pic/N.png">
+              <p>Carbon (C)</p>
+            </div>
+            <img id="symbol" src="Pic/=.png" width="30px" height="30px">
+            <div class="substance" id="result">
+              <img src="./Pic/result/CN/CN.jpg">
+              <p>Liquid Nitrogen (N2)</p>
+            </div>
+          </div>
+
+          <div class="line">
+            <hr>
+          </div>
+
+          <p id="danger">สารเคมีอันตราย !</p>
+          <p id="description">เมื่อเข้าสู่ร่างกายอาจเข้าไปยับยั้งการทำงานของเซลล์จนอาจเป็นอันตรายถึงชีวิต
+            มักเป็นของแข็งสีขาวและสารประกอบโลหะหนักพบได้มากในพืช</p>
+
+          <div class="contraner-avatage">
+            <div class="adventageBox">
+              <img src="./Pic/AdventageTop.png" id="adventageBanner">
+              <div id="adventageList">
+                <div id="adventageItem">
+                  <img src="./Pic/result/CN/CN-pros1.jpg">
+                  <div>นำมาใช้ในอุตสาหกรรมการผลิตกระดาษ สิ่งทอ และพลาสติก</div>
+                </div>
+              </div>
+            </div>
+            <div class="disAdventageBox">
+              <img id="disAdventageBanner" src="./Pic/DisAdventageTop.png">
+              <div id="disadventageList">
+                <div id="adventageItem">
+                  <img src="./Pic/result/CN/CN-cons1.jpg">
+                  <div>นำมาใช้ในอุตสาหกรรมการผลิตกระดาษ สิ่งทอ และพลาสติก</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function handleClose() {
+      var ele = document.getElementById("modal");
+      ele.style.display = "none";
+    }
+  </script>
+  <script src="./node_modules/gojs/release/go-debug.js"></script>
+  <script src="./gojs.js"></script>
+  <script src="./data.js"></script>
+  <script src="./state.js"></script>
 
 </body>
 
