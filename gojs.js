@@ -245,6 +245,25 @@ function updateInputString() {
   element.value = newText;
 }
 
+function transformSubstanceByFullname(name) {
+  if (name === "Hydrogen") {
+    result = "H";
+  }
+  else if (name === "Carbon") {
+    result = "C";
+  }
+  else if (name === "Nitrogen") {
+    result = "N";
+  }
+  else if (name === "Oxygen") {
+    result = "O";
+  }
+  else {
+    result = name;
+  }
+  return result;
+}
+
 function handleConfirm() {
   if (machine.current_State.name === "final") {
     displayResult();
@@ -261,13 +280,85 @@ function displayCaution() {
   document.getElementById("content-result").style.display = "none";
   document.getElementById("content-caution").style.display = "block";
 }
+
 function displayResult() {
   document.getElementById("modal-content").style.borderColor = "#4F388F";
   document.getElementById("modal-topic").src = "./Pic/Result.png"
-  document.getElementById("content-result").style.display = "block";
+  document.getElementById("content-result").style.display = "flex";
   document.getElementById("content-caution").style.display = "none";
 
-  // เพิ่ม JS
+  let substance_1 = transformSubstanceByFullname(getSubstance_1());
+  let substance_2 = transformSubstanceByFullname(getSubstance_2());
+  let result = getResult();
+
+  let eleSubstance_1 = document.getElementById("substance_1");
+  let eleSubstance_2 = document.getElementById("substance_2");
+  let eleResult = document.getElementById("result");
+
+  //updateText
+  eleSubstance_1.getElementsByTagName("p")[0].innerText = machine.getFullNameByName(substance_1);
+  eleSubstance_2.getElementsByTagName("p")[0].innerText = machine.getFullNameByName(substance_2);
+  eleResult.getElementsByTagName("p")[0].innerText = machine.getFullNameByName(result);
+
+  //updateImg
+  eleSubstance_1.getElementsByTagName("img")[0].src = machine.getPathByName(substance_1);
+  eleSubstance_2.getElementsByTagName("img")[0].src = machine.getPathByName(substance_2);
+  eleResult.getElementsByTagName("img")[0].src = machine.getPathByName(result);
+
+  //updateDanger
+  document.getElementById("danger").style.display = (result === "CN") ? "block" : "none";
+
+  //updateDescription
+  document.getElementById("description").innerText = machine.getDescriptionByname(result);
+
+  //updateAdvantages
+  let advantagesList = machine.getAdvantagesByName(result);
+  let eleAdvantagesList = document.getElementById("adventageList");
+  updateItem(eleAdvantagesList,advantagesList);
+
+  //updateDisAdvantages
+
+  let disAdvantagesList = machine.getDisAdvantagesByName(result);
+  let eleDisAdvantagesList = document.getElementById("disadventageList");
+  updateItem(eleDisAdvantagesList,disAdvantagesList);
+ 
 }
+
+function getResult() {
+  return machine.prev_State.name;
+}
+function getSubstance_1() {
+  let len = machine.input_String.length;
+  return machine.input_String[len - 3]
+}
+function getSubstance_2() {
+  let len = machine.input_String.length;
+  return machine.input_String[len - 2]
+}
+
+function updateItem(ele, list) {
+  //remove all child
+  while (ele.hasChildNodes()) {
+    ele.removeChild(ele.firstChild);
+  }
+
+  for (let i = 0; i < list.length; i++) {
+    let item = document.createElement("div");
+    let item_img = document.createElement("img");
+    let item_p = document.createElement("div");
+
+    item.id = "adventageItem";
+
+    item_img.src = list[i].imgPath;
+    item_p.innerText = list[i].description;
+
+    item.appendChild(item_img);
+    item.appendChild(item_p);
+
+    ele.appendChild(item);
+  }
+}
+
+
 
 
